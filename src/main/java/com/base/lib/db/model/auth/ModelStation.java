@@ -33,8 +33,8 @@ public class ModelStation
 	@Column(name="created_at")
 	private Date createdAt;
 
-	@Column(name="active")
-	private boolean active;
+	@Column(name="`status`")
+	private int status;
 
 	public long getId() {
 		return id;
@@ -76,11 +76,11 @@ public class ModelStation
 		this.createdAt = createdAt;
 	}
 
-	public boolean isActive() {
-		return active;
+	public int getStatus() {
+		return status;
 	}
 
-	public void setActive(boolean active) {
-		this.active = active;
+	public void setStatus(int status) {
+		this.status = status;
 	}
 }

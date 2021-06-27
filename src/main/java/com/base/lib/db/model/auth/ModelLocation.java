@@ -1,5 +1,7 @@
 package com.base.lib.db.model.auth;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,6 +26,9 @@ public class ModelLocation {
 	@Column(name = "latitude")
 	private Double latitude;
 
+	@Column(name="created_at")
+	private Date createdAt;
+	
 	public long getId() {
 		return id;
 	}
@@ -54,6 +59,14 @@ public class ModelLocation {
 
 	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 	
 }

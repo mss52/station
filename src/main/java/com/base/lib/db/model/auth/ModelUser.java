@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="user")
 public class ModelUser 
@@ -34,6 +36,7 @@ public class ModelUser
 	private String username;
 
 	@Column(name="password",nullable = false)
+	@JsonIgnore
 	private String password;
 
 	@Column(name="status")

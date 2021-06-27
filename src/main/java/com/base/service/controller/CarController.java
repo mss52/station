@@ -1,8 +1,8 @@
 package com.base.service.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,8 +14,6 @@ import com.base.base.Return;
 import com.base.lib.db.model.ModelCar;
 import com.base.service.admin.requests.RequestCar;
 import com.base.service.admin.requests.RequestFillCar;
-import com.base.service.admin.requests.RequestLogin;
-import com.base.service.service.AuthenticationService;
 import com.base.service.service.CarService;
 
 @RestController
@@ -33,8 +31,8 @@ public class CarController extends BaseController {
 		return generateResponse(result);
 	}
 	
-	@RequestMapping(value="", method = RequestMethod.PUT)
-	public @ResponseBody ResponseEntity<ModelCar> addCar(@RequestBody RequestCar car) {
+	@RequestMapping(value="", method = RequestMethod.PUT,consumes = MediaType.APPLICATION_JSON_VALUE)
+	public  ResponseEntity<ModelCar> addCar(@RequestBody RequestCar car) {
 		Return<ModelCar> carModel = carService.addCar(car);
 		return generateResponse(carModel);
 	}

@@ -12,5 +12,7 @@
 	<bean id="baseDao" class="com.base.lib.db.dao.BaseDao"></bean>
 	<bean id="authDao" class="com.base.lib.db.dao.AuthDao"></bean>
 	<bean id="carDao" class="com.base.lib.db.dao.CarDao"></bean>
+	<bean id="stationDao" class="com.base.lib.db.dao.StationDao"></bean>
 	<bean id="configDao" class="com.base.lib.db.dao.ConfigDao"></bean>
+
 </beans>

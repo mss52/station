@@ -40,6 +40,7 @@ public class CorsInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		System.out.println(request.getRequestURL());
 		this.corsData = new CorsData(request);
 
 		if (this.corsData.isPreflighted()) {

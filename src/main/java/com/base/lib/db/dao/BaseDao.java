@@ -44,6 +44,10 @@ public class BaseDao {
 		sessionFactory.getCurrentSession().saveOrUpdate(model);
 	}
 
+	public void update(Object model) {
+		sessionFactory.getCurrentSession().update(model);
+	}
+	
 	public <T> void saveMass(List<T> model) {
 		for (int i = 0; i < model.size(); i++) {
 			sessionFactory.getCurrentSession().save(model.get(i));

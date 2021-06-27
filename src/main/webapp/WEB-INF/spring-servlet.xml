@@ -12,40 +12,62 @@
 
 	<context:component-scan
 		base-package="com.base.service" />
+	<context:component-scan
+		base-package="com.base.spring.bean" />
 
-	
 	<bean id="authenticationService"
 		class="com.base.service.service.AuthenticationService"></bean>
 
-	<bean id="carService"
-		class="com.base.service.service.CarService"></bean>
+	<bean id="carService" class="com.base.service.service.CarService"></bean>
+
+	<bean id="userService"
+		class="com.base.service.service.UserService"></bean>
+	<bean id="stationService"
+		class="com.base.service.service.StationService"></bean>
+	<bean id="locationService"
+		class="com.base.service.service.LocationService"></bean>
+
 	<mvc:annotation-driven />
 
 	<!-- Configures Interceptors -->
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"></mvc:mapping>
+			<mvc:exclude-mapping path="/swagger-ui/**" />
+			<mvc:exclude-mapping path="/swagger-ui.html" />
+
+			<mvc:exclude-mapping path="/webjars/**" />
+			<mvc:exclude-mapping path="/swagger-resources/**" />
 			<bean class="com.base.service.interceptor.CorsInterceptor"></bean>
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"></mvc:mapping>
+			<mvc:exclude-mapping path="/v2/api-docs" />
+			<mvc:exclude-mapping path="/swagger-ui/**" />
+			<mvc:exclude-mapping path="/webjars/**" />
+			<mvc:exclude-mapping path="/swagger-resources/**" />
+			<mvc:exclude-mapping path="/swagger-ui.html" />
+
 			<bean class="com.base.service.interceptor.DeviceInterceptor"></bean>
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"></mvc:mapping>
-			<mvc:exclude-mapping path="/auth/**"/>
-			<bean class="com.base.service.interceptor.AuthenticationInterceptor"></bean>
+			<mvc:exclude-mapping path="/user/login" />
+			<mvc:exclude-mapping path="/v2/api-docs" />
+			<mvc:exclude-mapping path="/swagger-ui/**" />
+			<mvc:exclude-mapping path="/swagger-resources/**" />
+			<mvc:exclude-mapping path="/swagger-ui.html" />
+
+			<mvc:exclude-mapping path="/webjars/**" />
+			<mvc:exclude-mapping path="/user/signup" />
+			<mvc:exclude-mapping path="/station/**" />
+			<bean
+				class="com.base.service.interceptor.AuthenticationInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix">
-			<value>/WEB-INF/views/</value>
-		</property>
-		<property name="suffix">
-			<value>.jsp</value>
-		</property>
-	</bean>
+	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<property name="prefix"> <value>/WEB-INF/views/</value> </property> <property 
+		name="suffix"> <value>.jsp</value> </property> </bean> -->
 
 	<bean id="contentNegotiationManager"
 		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
@@ -66,7 +88,4 @@
 		scope="request">
 		<aop:scoped-proxy proxy-target-class="true" />
 	</bean>
-	<mvc:cors>
-		<mvc:mapping path="/**" />
-	</mvc:cors>
 </beans>
