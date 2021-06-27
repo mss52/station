@@ -1,6 +1,7 @@
 package com.base.service.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,7 +10,6 @@ import com.base.base.Constants;
 import com.base.base.Failure;
 import com.base.base.Return;
 import com.base.base.Success;
-import com.base.bean.SessionBean;
 import com.base.lib.db.dao.StationDao;
 import com.base.lib.db.model.auth.ModelLocation;
 import com.base.lib.db.model.auth.ModelStation;
@@ -19,11 +19,16 @@ public class StationService {
 	@Autowired
 	private StationDao stationDao;
 
-	@Autowired
-	private SessionBean session;
+//	@Autowired
+//	private SessionBean session;
 
 	@Autowired
 	private LocationService locationService;
+
+	@Transactional
+	public Return<List<ModelStation>> get(String searchName) {
+		return new Success<>(stationDao.getStations(searchName));
+	}
 
 	@Transactional
 	public Return<ModelStation> put(RequestStation request) {
@@ -55,7 +60,7 @@ public class StationService {
 
 	@Transactional
 	public Return<ModelStation> update(RequestStation request) {
-		if(request==null) {
+		if (request == null) {
 			return new Failure<>("Invalid Station");
 		}
 		if (request.getName() == null) {

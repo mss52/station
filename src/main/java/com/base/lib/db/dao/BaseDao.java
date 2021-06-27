@@ -16,22 +16,18 @@ public class BaseDao {
 		return sessionFactory.getCurrentSession();
 	}
 
-	@SuppressWarnings("unchecked")
 	public <T> T getValueById(Class<T> modelClass, long id) {
 		return (T) sessionFactory.getCurrentSession().get(modelClass, id);
 	}
 
-	@SuppressWarnings("unchecked")
 	public <T> T getValueById(Class<T> modelClass, int id) {
 		return (T) sessionFactory.getCurrentSession().get(modelClass, id);
 	}
 
-	@SuppressWarnings({ "unchecked", "deprecation" })
 	public <T> T getValueByIdForUpdate(Class<T> modelClass, int id) {
 		return (T) sessionFactory.getCurrentSession().get(modelClass, id, LockMode.PESSIMISTIC_WRITE);
 	}
 
-	@SuppressWarnings({ "unchecked", "deprecation" })
 	public <T> T getValueByIdForUpdate(Class<T> modelClass, long id) {
 		return (T) sessionFactory.getCurrentSession().get(modelClass, id, LockMode.PESSIMISTIC_WRITE);
 	}

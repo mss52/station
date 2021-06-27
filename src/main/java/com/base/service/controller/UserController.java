@@ -39,7 +39,7 @@ public class UserController extends BaseController {
 		return generateResponse(result);
 	}
 	
-	@RequestMapping(value="/", method = RequestMethod.PATCH)
+	@RequestMapping(value="", method = RequestMethod.PATCH)
 	public @ResponseBody ResponseEntity<?> update(@RequestBody RequestSignUp requestLogin) {
 		Return<?> result = userService.update(requestLogin);
 		return generateResponse(result);

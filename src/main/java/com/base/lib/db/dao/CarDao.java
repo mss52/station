@@ -6,7 +6,6 @@ import org.hibernate.criterion.Restrictions;
 
 import com.base.lib.db.model.ModelCar;
 
-@SuppressWarnings("unchecked")
 public class CarDao extends BaseDao {
 
 	public ModelCar getCarByPlateNumberAndPlateCode(String plateNumber,String plateCode, boolean lock) {

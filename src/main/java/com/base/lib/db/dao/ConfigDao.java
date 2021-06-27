@@ -6,7 +6,6 @@ import org.hibernate.criterion.Restrictions;
 
 import com.base.lib.db.model.ModelConfig;
 
-@SuppressWarnings("unchecked")
 public class ConfigDao extends BaseDao {
 
 	public ModelConfig getConfigByKey(String key) {

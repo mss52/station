@@ -17,8 +17,8 @@ public class LocationService {
 	@Autowired
 	private StationDao stationDao;
 
-	@Autowired
-	private SessionBean session;
+//	@Autowired
+//	private SessionBean session;
 
 	@Transactional
 	public Return<ModelLocation> put(RequestLocation request) {
@@ -31,8 +31,8 @@ public class LocationService {
 		
 		ModelLocation u = new ModelLocation();
 		u.setDescription(request.getDescription());
-		u.setLatitude(u.getLatitude());
-		u.setLongitude(u.getLongitude());
+		u.setLatitude(request.getLatitude());
+		u.setLongitude(request.getLongitude());
 		u.setCreatedAt(new Date());
 		stationDao.save(u);
 		return new Success<ModelLocation>(u);

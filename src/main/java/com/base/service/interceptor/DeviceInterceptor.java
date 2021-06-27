@@ -14,7 +14,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.base.base.Constants;
 import com.base.base.Return;
 import com.base.base.SessionException;
-import com.base.bean.DeviceBean;
 import com.base.bean.SessionBean;
 import com.base.lib.db.model.auth.ModelDevice;
 import com.base.service.service.AuthenticationService;

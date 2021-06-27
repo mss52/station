@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.base.base.Constants;
-
 public class CorsInterceptor extends HandlerInterceptorAdapter {
 //	public static final String CREDENTIALS_NAME = "Access-Control-Allow-Credentials";
 //	public static final String MAX_AGE_NAME = "Access-Control-Max-Age";
