@@ -1,5 +1,7 @@
 package com.base.service.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.base.base.Return;
+import com.base.lib.db.model.auth.ModelStation;
 import com.base.service.admin.requests.RequestStation;
 import com.base.service.service.StationService;
 
@@ -21,21 +24,21 @@ public class StationController extends BaseController {
 	private StationService stationService;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public @ResponseBody ResponseEntity<?> get(
+	public @ResponseBody ResponseEntity<List<ModelStation>> get(
 			@RequestParam(name = "searchPhrase", required = false) String searchPhrase) {
-		Return<?> result = stationService.get(searchPhrase);
+		Return<List<ModelStation>> result = stationService.get(searchPhrase);
 		return generateResponse(result);
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.PUT)
-	public @ResponseBody ResponseEntity<?> put(@RequestBody RequestStation requestBody) {
-		Return<?> result = stationService.put(requestBody);
+	public @ResponseBody ResponseEntity<ModelStation> put(@RequestBody RequestStation requestBody) {
+		Return<ModelStation> result = stationService.put(requestBody);
 		return generateResponse(result);
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.PATCH)
-	public @ResponseBody ResponseEntity<?> update(@RequestBody RequestStation requestBody) {
-		Return<?> result = stationService.update(requestBody);
+	public @ResponseBody ResponseEntity<ModelStation> update(@RequestBody RequestStation requestBody) {
+		Return<ModelStation> result = stationService.update(requestBody);
 		return generateResponse(result);
 	}
 }

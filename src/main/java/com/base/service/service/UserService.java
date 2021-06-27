@@ -12,6 +12,7 @@ import com.base.lib.db.dao.AuthDao;
 import com.base.lib.db.model.auth.ModelStation;
 import com.base.lib.db.model.auth.ModelUser;
 import com.base.service.admin.requests.RequestSignUp;
+import com.base.service.admin.requests.RequestUpdateUser;
 import com.base.utils.SaltedMD5;
 
 public class UserService {
@@ -53,20 +54,18 @@ public class UserService {
 		u.setStatus(Constants.PENDING_APPROVAL);
 		u.setUserType(request.getType());
 		u.setUsername(request.getUsername());
+		u.setPhone(request.getPhone());
 		authDao.save(u);
 		return new Success<ModelUser>(u);
 	}
 
 	@Transactional
-	public Return<ModelUser> update(RequestSignUp request) {
+	public Return<ModelUser> update(RequestUpdateUser request) {
 		if (request.getName() == null) {
 			return new Failure<>("Invalid Name");
 		}
 		if (request.getPhone() == null) {
 			return new Failure<>("Invalid Phone Number");
-		}
-		if (request.getUsername() == null) {
-			return new Failure<>("Invalid Username");
 		}
 		if (request.getPassword() == null) {
 			return new Failure<>("Invalid Password");
@@ -81,6 +80,7 @@ public class UserService {
 			return new Failure<>("Station Not Found");
 		}
 		user.setName(request.getName());
+		user.setPhone(request.getPhone());
 		user.setPassword(SaltedMD5.getSecurePassword(request.getPassword(), null));
 		user.setStation(s);
 		authDao.update(user);

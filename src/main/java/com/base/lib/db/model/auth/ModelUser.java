@@ -39,6 +39,9 @@ public class ModelUser
 	@JsonIgnore
 	private String password;
 
+	@Column(name="phone")
+	private String phone;
+	
 	@Column(name="status")
 	private int status;
 	
@@ -107,6 +110,14 @@ public class ModelUser
 
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	
 }

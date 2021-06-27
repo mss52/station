@@ -33,7 +33,7 @@ public class AuthenticationService {
 	private SessionBean session;
 	
 	@Transactional
-	public Return login(String username, String password, Long verificationId, String code) {
+	public Return<ResponseLogin> login(String username, String password, Long verificationId, String code) {
 		if(StringUtils.isEmpty(code)) {
 			return loginFirstStep(username,password);
 		}else {
@@ -41,7 +41,7 @@ public class AuthenticationService {
 		}
 	}
 
-	private Return loginVerification(String username, String password, Long verificationId,
+	private Return<ResponseLogin> loginVerification(String username, String password, Long verificationId,
 			String code) {
 		ModelUser user =null;
 		if(verificationId==null){
@@ -79,7 +79,7 @@ public class AuthenticationService {
 		return createSession(user,device);
 	}
 
-	private Return loginFirstStep(String username, String password) {
+	private Return<ResponseLogin> loginFirstStep(String username, String password) {
 		if(StringUtils.isEmpty(password)) {
 			return new Failure<>("auth.password.empty");
 		}
@@ -115,7 +115,7 @@ public class AuthenticationService {
 		return createSession(user,device);
 	}
 
-	private Return createSession(ModelUser user,ModelDevice device) {
+	private Return<ResponseLogin> createSession(ModelUser user,ModelDevice device) {
 		ModelSession session=new ModelSession();
 		session.setDateCreation(new Date());
 		session.setDevice(device);
