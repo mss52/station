@@ -18,7 +18,10 @@
 	<import resource="classpath*:spring/dao.xml" />
 
 	<context:property-placeholder
-		location="classpath*:properties/db.properties" />
+        location="file:${user.home}/.station/db.properties"/>
+        
+	<!-- <context:property-placeholder
+		location="classpath*:properties/db.properties" /> -->
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">

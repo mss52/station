@@ -1,0 +1,740 @@
+{
+	"info": {
+		"_postman_id": "6f119c6a-3785-4a2c-9900-50e94253dc83",
+		"name": "station",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "device_uid",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_system",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_name",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_app_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_brand",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_model",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_os_version",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"test2\",\n\t\"password\":\"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/lib-service/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"lib-service",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Car",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "device_uid",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_system",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_name",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_app_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_brand",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_model",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_os_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "auth_session_id",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "auth_session_token",
+						"value": "e883521013404e1693e9d2ee2827b90f",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8082/lib-service/car?plateNumber=123456&plateCode=A",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"lib-service",
+						"car"
+					],
+					"query": [
+						{
+							"key": "plateNumber",
+							"value": "123456"
+						},
+						{
+							"key": "plateCode",
+							"value": "A"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add Car",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "device_uid",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_system",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_name",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_app_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_brand",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_model",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_os_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "auth_session_id",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "auth_session_token",
+						"value": "e883521013404e1693e9d2ee2827b90f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"carOwnerName\":\"mohamad\",\n\t\"plateNumber\":\"123456\",\n    \"plateCode\":\"A\",\n    \"note\":\"taxi\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/lib-service/car",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"lib-service",
+						"car"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit Car",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "device_uid",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_system",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_name",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_app_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_brand",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_model",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_os_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "auth_session_id",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "auth_session_token",
+						"value": "e883521013404e1693e9d2ee2827b90f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"carOwnerName\":\"mohamad1\",\n\t\"plateNumber\":\"123456\",\n    \"plateCode\":\"A\",\n    \"note\":\"taxi\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/lib-service/car",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"lib-service",
+						"car"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "filling Car",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "device_uid",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_system",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_name",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_app_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_brand",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_model",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_os_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "auth_session_id",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "auth_session_token",
+						"value": "e883521013404e1693e9d2ee2827b90f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"car\":{\n        \"id\":1,\n        \"carOwnerName\":\"mohamad1\",\n\t    \"plateNumber\":\"123456\",\n        \"plateCode\":\"A\",\n        \"note\":\"taxi\"\n    },\n\t\"amount\":1,\n    \"note\":\"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/lib-service/car/fill",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"lib-service",
+						"car",
+						"fill"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "device_uid",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_system",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_name",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_app_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_brand",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_model",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_os_version",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Mohamad\",\n    \"phone\":\"03150768\",\n    \"username\":\"test2\",\n    \"password\":\"1234\",\n    \"type\":1,\n    \"station\":{\n        \"id\":1,\n        \"name\":\"\",\n        \"phone\":\"\",\n        \"location\":{\n            \"description\":\"\",\n            \"longitude\":4,\n            \"latitude\":1\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/lib-service/user/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"lib-service",
+						"user",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get stations",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "device_uid",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_system",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_name",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_app_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_brand",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_model",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_os_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "auth_session_id",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "auth_session_token",
+						"value": "e883521013404e1693e9d2ee2827b90f",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8082/lib-service/station?searchPhrase=Ansar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"lib-service",
+						"station"
+					],
+					"query": [
+						{
+							"key": "searchPhrase",
+							"value": "Ansar"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add station",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "device_uid",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_system",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_name",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_app_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_brand",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_model",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_os_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "auth_session_id",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "auth_session_token",
+						"value": "e883521013404e1693e9d2ee2827b90f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"location\": {\n    \"description\": \"ansar\",\n    \"latitude\": 14.111,\n    \"longitude\": 15.111\n  },\n  \"name\": \"ansar\",\n  \"phone\": \"03150768\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/lib-service/station",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"lib-service",
+						"station"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update station",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "device_uid",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_system",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_name",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_app_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_brand",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_model",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_os_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "auth_session_id",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "auth_session_token",
+						"value": "e883521013404e1693e9d2ee2827b90f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":1,\n  \"location\": {\n    \"description\": \"ansar\",\n    \"latitude\": 14.111,\n    \"longitude\": 15.111\n  },\n  \"name\": \"ansar\",\n  \"phone\": \"031507268\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/lib-service/station",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"lib-service",
+						"station"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update user",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "device_uid",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_system",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_name",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_app_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_brand",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_model",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_os_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "auth_session_id",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "auth_session_token",
+						"value": "f22d78386c674feaaf51ff0030c76193",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Mohamad\",\n    \"phone\":\"03150768\",\n    \"password\":\"12345\",\n    \"type\":1,\n    \"station\":{\n        \"id\":1,\n        \"name\":\"\",\n        \"phone\":\"\",\n        \"location\":{\n            \"description\":\"\",\n            \"longitude\":4,\n            \"latitude\":1\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/lib-service/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"lib-service",
+						"user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
