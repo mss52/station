@@ -735,6 +735,136 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "get Car last fill",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "device_uid",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_system",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_name",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_app_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_brand",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_model",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_os_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "language",
+						"value": "ar",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8082/lib-service/car/last/fill?plateNumber=123456&plateCode=A",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"lib-service",
+						"car",
+						"last",
+						"fill"
+					],
+					"query": [
+						{
+							"key": "plateNumber",
+							"value": "123456"
+						},
+						{
+							"key": "plateCode",
+							"value": "A"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Car Code",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "device_uid",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_system",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_name",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_app_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_brand",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_model",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_os_version",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8082/lib-service/car/code",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"lib-service",
+						"car",
+						"code"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

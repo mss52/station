@@ -25,7 +25,7 @@ public class CorsInterceptor extends HandlerInterceptorAdapter {
 	private CorsData corsData;
 
 	private String origin="*";
-	private String allowHeaders="*";
+	String allowHeaders="*";
 
 	public void setOrigin(String origin) {
 		this.origin = origin;

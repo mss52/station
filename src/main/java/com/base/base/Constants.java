@@ -15,6 +15,8 @@ public class Constants {
 	public static String HEADER_DEVICE_BRAND="device_brand";
 	public static String HEADER_DEVICE_MODEL="device_model";
 	public static String HEADER_DEVICE_OS_VERSION="device_os_version";
+	public static String HEADER_LANGUAGE="language";
+
 
 	public static String HEADER_AUTH_SESSION_ID="auth_session_id";
 	public static String HEADER_AUTH_SESSION_TOKEN="auth_session_token";

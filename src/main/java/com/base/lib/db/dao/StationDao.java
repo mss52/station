@@ -16,6 +16,7 @@ public class StationDao extends BaseDao {
 		return (ModelStation) criteria.getExecutableCriteria(getSession()).uniqueResult();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<ModelStation> getStations(String searchName) {
 		DetachedCriteria criteria = DetachedCriteria.forClass(ModelStation.class);
 		if(!StringUtils.isEmpty(searchName)) {

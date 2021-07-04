@@ -2,6 +2,7 @@ package com.base.service.service;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,10 +14,12 @@ import com.base.bean.SessionBean;
 import com.base.lib.db.dao.CarDao;
 import com.base.lib.db.dao.ConfigDao;
 import com.base.lib.db.model.ModelCar;
+import com.base.lib.db.model.ModelCarCode;
 import com.base.lib.db.model.ModelCarFillingHistory;
 import com.base.lib.db.model.ModelConfig;
 import com.base.service.admin.requests.RequestCar;
 import com.base.service.admin.requests.RequestFillCar;
+import com.base.service.response.ResponseCarLastFilling;
 
 public class CarService {
 	@Autowired
@@ -38,11 +41,32 @@ public class CarService {
 	}
 
 	@Transactional
+	public Return<ResponseCarLastFilling> getCarLastFill(String plateNumber, String plateCode) {
+		ModelCar car = carDao.getCarByPlateNumberAndPlateCode(plateNumber, plateCode,false);
+		if (car == null) {
+			return new Failure<>("car.not.found");
+		}
+		ResponseCarLastFilling response=new ResponseCarLastFilling();
+		response.setAllowedAfterDayCount(car.getAllowedAfterDayCount());
+		response.setLast(car.getLastFilled());
+		return new Success<ResponseCarLastFilling>(response);
+	}
+	
+	@Transactional
+	public Return<List<ModelCarCode>> getCarCode() {
+		return new Success<List<ModelCarCode>>( carDao.getCarCodes());
+	}
+	
+	@Transactional
 	public Return<ModelCar> addCar(RequestCar carInfo) {
 		if(carInfo.getPlateNumber()==null || carInfo.getPlateNumber().length()<4) {
 			return new Failure<ModelCar>("Invalid Plate Number");
 		}
 		if(carInfo.getPlateCode()==null || carInfo.getPlateCode().length()!=1) {
+			return new Failure<ModelCar>("Invalid Plate Code");
+		}
+		ModelCarCode c=carDao.getCarCodeByCode(carInfo.getPlateCode());
+		if(c==null) {
 			return new Failure<ModelCar>("Invalid Plate Code");
 		}
 		ModelCar car = carDao.getCarByPlateNumberAndPlateCode(carInfo.getPlateNumber(), carInfo.getPlateCode(),true);
@@ -54,7 +78,7 @@ public class CarService {
 		car.setPlateNumber(carInfo.getPlateNumber());
 		car.setAddedByUser(session.getUser().getId());
 		car.setCarOwnerName(carInfo.getCarOwnerName());
-		car.setAllowedAfterDayCount(carInfo.getAllowedAfterDayCount());
+		car.setAllowedAfterDayCount(carInfo.getAllowedAfterDayCount()==null?c.getAllowedAfterDayCount():carInfo.getAllowedAfterDayCount());
 		car.setNote(carInfo.getNote());
 		carDao.saveOrUpdate(car);
 		return new Success<>(car);
@@ -68,6 +92,10 @@ public class CarService {
 		if(carInfo.getPlateCode()==null || carInfo.getPlateCode().length()!=1) {
 			return new Failure<ModelCar>("Invalid Plate Code");
 		}
+		ModelCarCode c=carDao.getCarCodeByCode(carInfo.getPlateCode());
+		if(c==null) {
+			return new Failure<ModelCar>("Invalid Plate Code");
+		}
 		ModelCar car = carDao.getCarByPlateNumberAndPlateCode(carInfo.getPlateNumber(), carInfo.getPlateCode(),true);
 		if(car==null) {
 			car=new ModelCar();
@@ -77,7 +105,7 @@ public class CarService {
 		}
 		car.setCarOwnerName(carInfo.getCarOwnerName()==null?car.getCarOwnerName():carInfo.getCarOwnerName());
 		car.setNote(carInfo.getNote()==null?car.getNote():carInfo.getNote());
-		car.setAllowedAfterDayCount(carInfo.getAllowedAfterDayCount());
+		car.setAllowedAfterDayCount(carInfo.getAllowedAfterDayCount()==null?c.getAllowedAfterDayCount():carInfo.getAllowedAfterDayCount());
 		carDao.saveOrUpdate(car);
 		return new Success<>(car);
 	}
@@ -128,7 +156,7 @@ public class CarService {
 		fill.setAmount(carInfo.getAmount());
 		fill.setCarId(car.getId());
 		fill.setDate(new Date());
-		fill.setFillingUserId(session.getUser().getId());
+		fill.setFillingUser(session.getUser());
 		fill.setNote(carInfo.getNote());
 		carDao.save(fill);
 		car.setLastFilled(fill);

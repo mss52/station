@@ -33,12 +33,15 @@ public class AuthDao extends BaseDao {
 
 	public ModelDevice getDevice(Long id, String deviceUid) {
 		DetachedCriteria criteria = DetachedCriteria.forClass(ModelDevice.class);
-		if(id!=null) {
-			criteria.add(Restrictions.eq("id", id));
-		}
+		
 		if(deviceUid!=null) {
 			criteria.add(Restrictions.eq("uid", deviceUid));
+		}else if(id!=null) {
+			criteria.add(Restrictions.eq("id", id));
+		} else {
+			return null;
 		}
+		
 		return (ModelDevice) criteria.getExecutableCriteria(getSession()).uniqueResult();
 	}
 	public ModelSession getSession(Long id, String token) {

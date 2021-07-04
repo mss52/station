@@ -7,9 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import com.base.lib.db.model.auth.ModelUser;
 
 
 @Entity
@@ -24,8 +26,9 @@ public class ModelCarFillingHistory {
 	@Column(name = "car_id")
 	private long carId;
 
-	@Column(name = "filling_user_id")
-	private long fillingUserId;
+	@ManyToOne
+	@JoinColumn(name = "filling_user_id")
+	private ModelUser fillingUser;
 
 	@Column(name = "note")
 	private String note;
@@ -52,12 +55,13 @@ public class ModelCarFillingHistory {
 		this.carId = carId;
 	}
 
-	public long getFillingUserId() {
-		return fillingUserId;
+	
+	public ModelUser getFillingUser() {
+		return fillingUser;
 	}
 
-	public void setFillingUserId(long fillingUserId) {
-		this.fillingUserId = fillingUserId;
+	public void setFillingUser(ModelUser fillingUser) {
+		this.fillingUser = fillingUser;
 	}
 
 	public String getNote() {

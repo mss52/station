@@ -1,5 +1,7 @@
 package com.base.service.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.base.base.Return;
 import com.base.lib.db.model.ModelCar;
+import com.base.lib.db.model.ModelCarCode;
 import com.base.service.admin.requests.RequestCar;
 import com.base.service.admin.requests.RequestFillCar;
+import com.base.service.response.ResponseCarLastFilling;
 import com.base.service.service.CarService;
 
 @RestController
@@ -28,6 +32,18 @@ public class CarController extends BaseController {
 	public @ResponseBody ResponseEntity<ModelCar> getCar(@RequestParam(name="plateNumber") String plateNumber,
 			@RequestParam(name="plateCode") String plateCode) {
 		Return<ModelCar> result = carService.getCar(plateNumber,plateCode);
+		return generateResponse(result);
+	}
+	
+	@RequestMapping(value="/code", method = RequestMethod.GET)
+	public @ResponseBody ResponseEntity<List<ModelCarCode>> getCarCodes() {
+		return generateResponse(carService.getCarCode());
+	}
+	
+	@RequestMapping(value="/last/fill", method = RequestMethod.GET)
+	public @ResponseBody ResponseEntity<ResponseCarLastFilling> getCarLastFill(@RequestParam(name="plateNumber") String plateNumber,
+			@RequestParam(name="plateCode") String plateCode) {
+		Return<ResponseCarLastFilling> result = carService.getCarLastFill(plateNumber,plateCode);
 		return generateResponse(result);
 	}
 	

@@ -1,6 +1,5 @@
 package com.base.service.service;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -19,7 +18,6 @@ import com.base.lib.db.model.auth.ModelDevice;
 import com.base.lib.db.model.auth.ModelLoginVerification;
 import com.base.lib.db.model.auth.ModelSession;
 import com.base.lib.db.model.auth.ModelUser;
-import com.base.lib.db.utils.CodeUtils;
 import com.base.service.response.ResponseLogin;
 import com.base.service.response.ResponseSession;
 import com.base.utils.NumberUtils;
@@ -126,7 +124,7 @@ public class AuthenticationService {
 
 	@Transactional
 	public Return<ModelDevice> createDevice(String deviceId, String deviceUid, String deviceModel, String deviceBrand, String deviceOsVersion,
-			String deviceOperatingSystem, String deviceOperatingName,String appVersion) {
+			String deviceOperatingSystem, String deviceOperatingName,String appVersion,String language) {
 		Long id = NumberUtils.parseLong(deviceId);
 		if(id==null && StringUtils.isEmpty(deviceUid)) {
 			return new Failure<>("device.identifier_empty");
@@ -143,9 +141,11 @@ public class AuthenticationService {
 			device.setOperatingSystem(NumberUtils.pasrseInteger(deviceOperatingSystem));
 			device.setOsVersion(deviceOsVersion);
 			device.setUid(deviceUid);
+			device.setLanguage(language);
 			authDao.save(device);
 		}else {
 			device.setAppVersion(appVersion);
+			device.setLanguage(language);
 			authDao.saveOrUpdate(device);
 		}
 		if(!device.isActive()) {

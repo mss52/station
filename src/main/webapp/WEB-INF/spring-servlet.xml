@@ -61,6 +61,9 @@
 			<mvc:exclude-mapping path="/webjars/**" />
 			<mvc:exclude-mapping path="/user/signup" />
 			<mvc:exclude-mapping path="/station/**" />
+			<mvc:exclude-mapping path="/car/code" />
+			<mvc:exclude-mapping path="/car//last/fill" />
+			
 			<bean
 				class="com.base.service.interceptor.AuthenticationInterceptor"></bean>
 		</mvc:interceptor>

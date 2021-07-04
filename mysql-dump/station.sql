@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `station_schema` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin */;
+USE `station_schema`;
 -- MySQL dump 10.13  Distrib 8.0.25, for macos11 (x86_64)
 --
 -- Host: 127.0.0.1    Database: station_schema
@@ -19,10 +21,6 @@
 -- Table structure for table `car`
 --
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
 DROP TABLE IF EXISTS `car`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -43,6 +41,40 @@ CREATE TABLE `car` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `car`
+--
+
+LOCK TABLES `car` WRITE;
+/*!40000 ALTER TABLE `car` DISABLE KEYS */;
+/*!40000 ALTER TABLE `car` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `car_code`
+--
+
+DROP TABLE IF EXISTS `car_code`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `car_code` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `allowed_after_day_count` bigint(20) DEFAULT NULL,
+  `code` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `car_code`
+--
+
+LOCK TABLES `car_code` WRITE;
+/*!40000 ALTER TABLE `car_code` DISABLE KEYS */;
+INSERT INTO `car_code` VALUES (1,3,'A'),(2,3,'B'),(3,3,'Y'),(4,3,'G'),(5,3,'N'),(6,3,'O'),(7,3,'S'),(8,3,'T'),(9,3,'K'),(10,3,'Z'),(11,2,'M'),(12,5,'D'),(13,3,'R'),(14,2,'P'),(15,3,'*');
+/*!40000 ALTER TABLE `car_code` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `car_filling_history`
 --
 
@@ -56,9 +88,20 @@ CREATE TABLE `car_filling_history` (
   `date` datetime DEFAULT NULL,
   `filling_user_id` bigint(20) DEFAULT NULL,
   `note` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `FKiaufh5oypl1rrrd36sxvkn4tb` (`filling_user_id`),
+  CONSTRAINT `FKiaufh5oypl1rrrd36sxvkn4tb` FOREIGN KEY (`filling_user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `car_filling_history`
+--
+
+LOCK TABLES `car_filling_history` WRITE;
+/*!40000 ALTER TABLE `car_filling_history` DISABLE KEYS */;
+/*!40000 ALTER TABLE `car_filling_history` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `config`
@@ -76,6 +119,15 @@ CREATE TABLE `config` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `config`
+--
+
+LOCK TABLES `config` WRITE;
+/*!40000 ALTER TABLE `config` DISABLE KEYS */;
+/*!40000 ALTER TABLE `config` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `device`
@@ -97,9 +149,45 @@ CREATE TABLE `device` (
   `operating_system` int(11) DEFAULT NULL,
   `os_version` varchar(16) COLLATE utf8mb4_bin DEFAULT NULL,
   `uid` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
+  `language` varchar(16) COLLATE utf8mb4_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `device`
+--
+
+LOCK TABLES `device` WRITE;
+/*!40000 ALTER TABLE `device` DISABLE KEYS */;
+/*!40000 ALTER TABLE `device` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `localization`
+--
+
+DROP TABLE IF EXISTS `localization`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `localization` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
+  `language` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
+  `value` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `localization`
+--
+
+LOCK TABLES `localization` WRITE;
+/*!40000 ALTER TABLE `localization` DISABLE KEYS */;
+INSERT INTO `localization` VALUES (1,'car.not.found','en','Car Not Found'),(2,'car.not.found','ar','Ma fe seayara');
+/*!40000 ALTER TABLE `localization` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `location`
@@ -119,6 +207,15 @@ CREATE TABLE `location` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `location`
+--
+
+LOCK TABLES `location` WRITE;
+/*!40000 ALTER TABLE `location` DISABLE KEYS */;
+/*!40000 ALTER TABLE `location` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `login_verification`
 --
 
@@ -134,6 +231,15 @@ CREATE TABLE `login_verification` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `login_verification`
+--
+
+LOCK TABLES `login_verification` WRITE;
+/*!40000 ALTER TABLE `login_verification` DISABLE KEYS */;
+/*!40000 ALTER TABLE `login_verification` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `session`
@@ -155,8 +261,17 @@ CREATE TABLE `session` (
   KEY `FK50m0ngjpknruaqj4rriqa9cwf` (`user_id`),
   CONSTRAINT `FK50m0ngjpknruaqj4rriqa9cwf` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FKa9qm1mhb31awsnsv89ypp2b0t` FOREIGN KEY (`device_id`) REFERENCES `device` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `session`
+--
+
+LOCK TABLES `session` WRITE;
+/*!40000 ALTER TABLE `session` DISABLE KEYS */;
+/*!40000 ALTER TABLE `session` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `station`
@@ -177,6 +292,15 @@ CREATE TABLE `station` (
   CONSTRAINT `FKqlnvqs4wbjtf02m0wghvreewo` FOREIGN KEY (`location_id`) REFERENCES `location` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `station`
+--
+
+LOCK TABLES `station` WRITE;
+/*!40000 ALTER TABLE `station` DISABLE KEYS */;
+/*!40000 ALTER TABLE `station` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `user`
@@ -200,10 +324,16 @@ CREATE TABLE `user` (
   KEY `FK3epii5sxhw0lqhb92yj286y2d` (`station_id`),
   CONSTRAINT `FK3epii5sxhw0lqhb92yj286y2d` FOREIGN KEY (`station_id`) REFERENCES `station` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
-
-COMMIT;
-
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -214,4 +344,4 @@ COMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-28  1:28:57
+-- Dump completed on 2021-07-04 22:10:17

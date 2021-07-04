@@ -28,6 +28,9 @@ public class ModelDevice
 	@Column(name = "is_active")
 	private boolean active = true;
 
+	@Column(name = "language", length = 16)
+	private String language;
+	
 	@Column(name = "app_version", length = 16)
 	private String appVersion;
 
@@ -67,6 +70,14 @@ public class ModelDevice
 
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 
 	public Integer getOperatingSystem() {

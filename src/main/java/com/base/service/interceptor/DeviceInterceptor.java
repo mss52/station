@@ -46,7 +46,8 @@ public class DeviceInterceptor extends HandlerInterceptorAdapter {
 		}
 		Return<ModelDevice> deviceResult = authenticationService.createDevice(headers.get(Constants.HEADER_DEVICE_ID),headers.get(Constants.HEADER_DEVICE_UID),headers.get(Constants.HEADER_DEVICE_MODEL),
 				headers.get(Constants.HEADER_DEVICE_BRAND),headers.get(Constants.HEADER_DEVICE_OS_VERSION),headers.get(Constants.HEADER_DEVICE_OPERATING_SYSTEM),
-				headers.get(Constants.HEADER_DEVICE_OPERATING_NAME),headers.get(Constants.HEADER_DEVICE_APP_VERSION));
+				headers.get(Constants.HEADER_DEVICE_OPERATING_NAME),headers.get(Constants.HEADER_DEVICE_APP_VERSION),
+				headers.get(Constants.HEADER_LANGUAGE));
 		if(!deviceResult.isSuccess()) {
 			throw new SessionException(deviceResult.getCode());
 		}

@@ -18,9 +18,7 @@ import com.base.service.response.ResponseLogin;
 import com.base.service.service.AuthenticationService;
 import com.base.service.service.UserService;
 
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiParam;
-import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @RequestMapping("/user")

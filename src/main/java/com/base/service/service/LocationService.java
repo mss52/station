@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.base.base.Failure;
 import com.base.base.Return;
 import com.base.base.Success;
-import com.base.bean.SessionBean;
 import com.base.lib.db.dao.StationDao;
 import com.base.lib.db.model.auth.ModelLocation;
 import com.base.service.admin.requests.RequestLocation;
