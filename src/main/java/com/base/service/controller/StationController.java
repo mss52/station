@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.base.base.Constants;
 import com.base.base.Return;
 import com.base.lib.db.model.auth.ModelStation;
 import com.base.service.admin.requests.RequestStation;
@@ -25,8 +26,9 @@ public class StationController extends BaseController {
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<List<ModelStation>> get(
-			@RequestParam(name = "searchPhrase", required = false) String searchPhrase) {
-		Return<List<ModelStation>> result = stationService.get(searchPhrase);
+			@RequestParam(name = "searchPhrase", required = false) String searchPhrase,
+			@RequestParam(name = "all", required = false,defaultValue = "false") Boolean all) {
+		Return<List<ModelStation>> result = stationService.get(searchPhrase,(all==null||!all)?Constants.ACTIVE:null);
 		return generateResponse(result);
 	}
 

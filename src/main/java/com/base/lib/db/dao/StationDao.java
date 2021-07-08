@@ -17,11 +17,14 @@ public class StationDao extends BaseDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<ModelStation> getStations(String searchName) {
+	public List<ModelStation> getStations(String searchName,Long statusId) {
 		DetachedCriteria criteria = DetachedCriteria.forClass(ModelStation.class);
 		if(!StringUtils.isEmpty(searchName)) {
 			searchName=searchName.trim()+"%";
 			criteria.add(Restrictions.ilike("name", searchName));
+		}
+		if(statusId!=null) {
+			criteria.add(Restrictions.eq("status.id", statusId));
 		}
 		return (List<ModelStation>) criteria.getExecutableCriteria(getSession()).list();
 	}

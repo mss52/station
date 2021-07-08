@@ -1,10 +1,10 @@
-CREATE DATABASE  IF NOT EXISTS `station_schema` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin */;
+CREATE DATABASE  IF NOT EXISTS `station_schema` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `station_schema`;
 -- MySQL dump 10.13  Distrib 8.0.25, for macos11 (x86_64)
 --
 -- Host: 127.0.0.1    Database: station_schema
 -- ------------------------------------------------------
--- Server version	5.7.32
+-- Server version	5.7.34
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -151,7 +151,7 @@ CREATE TABLE `device` (
   `uid` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   `language` varchar(16) COLLATE utf8mb4_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -160,6 +160,7 @@ CREATE TABLE `device` (
 
 LOCK TABLES `device` WRITE;
 /*!40000 ALTER TABLE `device` DISABLE KEYS */;
+INSERT INTO `device` VALUES (1,_binary '','1','1','2021-07-08 21:21:41',NULL,NULL,'1','1',1,'1','1',NULL);
 /*!40000 ALTER TABLE `device` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -203,7 +204,7 @@ CREATE TABLE `location` (
   `latitude` double DEFAULT NULL,
   `longitude` double DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -212,6 +213,7 @@ CREATE TABLE `location` (
 
 LOCK TABLES `location` WRITE;
 /*!40000 ALTER TABLE `location` DISABLE KEYS */;
+INSERT INTO `location` VALUES (1,'2021-07-08 21:21:54','ansar',14.111,15.111);
 /*!40000 ALTER TABLE `location` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -285,12 +287,15 @@ CREATE TABLE `station` (
   `created_at` datetime DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   `phone` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
   `location_id` bigint(20) DEFAULT NULL,
+  `is_close` bit(1) DEFAULT NULL,
+  `status` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKqlnvqs4wbjtf02m0wghvreewo` (`location_id`),
+  KEY `FKn2v51hpc55owjbeuoo48eq7k2` (`status`),
+  CONSTRAINT `FKn2v51hpc55owjbeuoo48eq7k2` FOREIGN KEY (`status`) REFERENCES `status` (`id`),
   CONSTRAINT `FKqlnvqs4wbjtf02m0wghvreewo` FOREIGN KEY (`location_id`) REFERENCES `location` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -300,6 +305,30 @@ CREATE TABLE `station` (
 LOCK TABLES `station` WRITE;
 /*!40000 ALTER TABLE `station` DISABLE KEYS */;
 /*!40000 ALTER TABLE `station` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `status`
+--
+
+DROP TABLE IF EXISTS `status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `status` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `status`
+--
+
+LOCK TABLES `status` WRITE;
+/*!40000 ALTER TABLE `status` DISABLE KEYS */;
+INSERT INTO `status` VALUES (1,'ACTIVE'),(2,'PENDING APPROVAL'),(3,'INACTIVE'),(4,'SUSPEDED');
+/*!40000 ALTER TABLE `status` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -314,16 +343,18 @@ CREATE TABLE `user` (
   `created_at` datetime DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_bin NOT NULL,
-  `status` int(11) DEFAULT NULL,
   `user_type` int(11) DEFAULT NULL,
   `username` varchar(255) COLLATE utf8mb4_bin NOT NULL,
   `station_id` bigint(20) DEFAULT NULL,
   `phone` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
+  `status` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_sb8bbouer5wak8vyiiy4pf2bx` (`username`),
   KEY `FK3epii5sxhw0lqhb92yj286y2d` (`station_id`),
-  CONSTRAINT `FK3epii5sxhw0lqhb92yj286y2d` FOREIGN KEY (`station_id`) REFERENCES `station` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+  KEY `FK8tmbsnntxtkc6kg0xjai9tv9w` (`status`),
+  CONSTRAINT `FK3epii5sxhw0lqhb92yj286y2d` FOREIGN KEY (`station_id`) REFERENCES `station` (`id`),
+  CONSTRAINT `FK8tmbsnntxtkc6kg0xjai9tv9w` FOREIGN KEY (`status`) REFERENCES `status` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -344,4 +375,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-04 22:10:17
+-- Dump completed on 2021-07-09  0:35:02

@@ -5,6 +5,7 @@ public class RequestStation {
 	private String name;
 	private String phone;
 	private RequestLocation location;
+	private Boolean closed;
 
 	
 	public Long getId() {
@@ -37,6 +38,14 @@ public class RequestStation {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public Boolean getClosed() {
+		return closed;
+	}
+
+	public void setClosed(Boolean closed) {
+		this.closed = closed;
 	}
 
 }

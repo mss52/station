@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.base.lib.db.model.ModelStatus;
+
 @Entity
 @Table(name="station")
 public class ModelStation 
@@ -33,8 +35,12 @@ public class ModelStation
 	@Column(name="created_at")
 	private Date createdAt;
 
-	@Column(name="`status`")
-	private int status;
+	@Column(name="is_close")
+	private boolean closed=true;
+	
+	@ManyToOne
+	@JoinColumn(name="`status`")
+	private ModelStatus status;
 
 	public long getId() {
 		return id;
@@ -76,11 +82,20 @@ public class ModelStation
 		this.createdAt = createdAt;
 	}
 
-	public int getStatus() {
+	public ModelStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(ModelStatus status) {
 		this.status = status;
 	}
+
+	public boolean isClosed() {
+		return closed;
+	}
+
+	public void setClosed(boolean closed) {
+		this.closed = closed;
+	}
+	
 }

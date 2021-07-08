@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.base.lib.db.model.ModelStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -42,8 +43,9 @@ public class ModelUser
 	@Column(name="phone")
 	private String phone;
 	
-	@Column(name="status")
-	private int status;
+	@ManyToOne
+	@JoinColumn(name="status")
+	private ModelStatus status;
 	
 	@Column(name="created_at")
 	private Date createdAt;
@@ -96,11 +98,11 @@ public class ModelUser
 		this.password = password;
 	}
 
-	public int getStatus() {
+	public ModelStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(ModelStatus status) {
 		this.status = status;
 	}
 

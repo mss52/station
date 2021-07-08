@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Constants {
-	public static final int ACTIVE = 1;
-	public static final int PENDING_APPROVAL = 2;
-	public static final int INACTIVE = 3;
+	public static final long ACTIVE = 1;
+	public static final long PENDING_APPROVAL = 2;
+	public static final long INACTIVE = 3;
 	public static String HEADER_DEVICE_ID="device_id";
 	public static String HEADER_DEVICE_UID="device_uid";
 	public static String HEADER_DEVICE_OPERATING_SYSTEM="device_operating_system";

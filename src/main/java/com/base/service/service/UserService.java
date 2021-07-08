@@ -9,6 +9,7 @@ import com.base.base.Return;
 import com.base.base.Success;
 import com.base.bean.SessionBean;
 import com.base.lib.db.dao.AuthDao;
+import com.base.lib.db.model.ModelStatus;
 import com.base.lib.db.model.auth.ModelStation;
 import com.base.lib.db.model.auth.ModelUser;
 import com.base.service.admin.requests.RequestSignUp;
@@ -51,7 +52,7 @@ public class UserService {
 		u.setName(request.getName());
 		u.setPassword(SaltedMD5.getSecurePassword(request.getPassword(), null));
 		u.setStation(s);
-		u.setStatus(Constants.PENDING_APPROVAL);
+		u.setStatus(new ModelStatus(Constants.PENDING_APPROVAL));
 		u.setUserType(request.getType());
 		u.setUsername(request.getUsername());
 		u.setPhone(request.getPhone());

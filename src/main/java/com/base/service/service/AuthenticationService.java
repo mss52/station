@@ -79,23 +79,23 @@ public class AuthenticationService {
 
 	private Return<ResponseLogin> loginFirstStep(String username, String password) {
 		if(StringUtils.isEmpty(password)) {
-			return new Failure<>("auth.password.empty");
+			return new Failure<>("auth.not_valid_login");
 		}
 		if(StringUtils.isEmpty(username)) {
-			return new Failure<>("auth.username_not_found");
+			return new Failure<>("auth.not_valid_login");
 		}
 //		if(!Objects.equals(password1, password2)) {
 //			return new Failure<>("auth.password.miss_match");
 //		}
 		ModelUser user = authDao.getUserByUserName(username.toLowerCase());
 		if(user==null) {
-			return new Failure<>("auth.username_not_found");
+			return new Failure<>("auth.not_valid_login");
 		}
 		password=SaltedMD5.getSecurePassword(password, null);
 		if(!Objects.equals(password, user.getPassword())) {
-			return new Failure<>("auth.wrong_password");
+			return new Failure<>("auth.not_valid_login");
 		}
-		if(user.getStatus()!=Constants.ACTIVE) {
+		if(user.getStatus()==null ||user.getStatus().getId()!=Constants.ACTIVE) {
 			return new Failure<>("auth.user_not_active");
 		}
 //		if(false){

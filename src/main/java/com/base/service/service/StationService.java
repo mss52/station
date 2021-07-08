@@ -11,6 +11,7 @@ import com.base.base.Failure;
 import com.base.base.Return;
 import com.base.base.Success;
 import com.base.lib.db.dao.StationDao;
+import com.base.lib.db.model.ModelStatus;
 import com.base.lib.db.model.auth.ModelLocation;
 import com.base.lib.db.model.auth.ModelStation;
 import com.base.service.admin.requests.RequestStation;
@@ -26,8 +27,8 @@ public class StationService {
 	private LocationService locationService;
 
 	@Transactional
-	public Return<List<ModelStation>> get(String searchName) {
-		return new Success<>(stationDao.getStations(searchName));
+	public Return<List<ModelStation>> get(String searchName,Long statusId) {
+		return new Success<>(stationDao.getStations(searchName,statusId));
 	}
 
 	@Transactional
@@ -49,11 +50,12 @@ public class StationService {
 		}
 
 		ModelStation u = new ModelStation();
-		u.setStatus(Constants.ACTIVE);
+		u.setStatus(new ModelStatus(Constants.PENDING_APPROVAL));
 		u.setCreatedAt(new Date());
 		u.setLocation(location.getData());
 		u.setName(request.getName());
 		u.setPhone(request.getPhone());
+		u.setClosed(request.getClosed()==null?true:request.getClosed());
 		stationDao.save(u);
 		return new Success<ModelStation>(u);
 	}
@@ -83,7 +85,8 @@ public class StationService {
 		}
 		station.setName(request.getName());
 		station.setPhone(request.getPhone());
-		stationDao.save(station);
+		station.setClosed(request.getClosed()==null?true:request.getClosed());
+		stationDao.update(station);
 		return new Success<ModelStation>(station);
 	}
 }
