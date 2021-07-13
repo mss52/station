@@ -40,13 +40,6 @@ public class CarController extends BaseController {
 		return generateResponse(carService.getCarCode());
 	}
 	
-	@RequestMapping(value="/last/fill", method = RequestMethod.GET)
-	public @ResponseBody ResponseEntity<ResponseCarLastFilling> getCarLastFill(@RequestParam(name="plateNumber") String plateNumber,
-			@RequestParam(name="plateCode") String plateCode) {
-		Return<ResponseCarLastFilling> result = carService.getCarLastFill(plateNumber,plateCode);
-		return generateResponse(result);
-	}
-	
 	@RequestMapping(value="", method = RequestMethod.PUT,consumes = MediaType.APPLICATION_JSON_VALUE)
 	public  ResponseEntity<ModelCar> addCar(@RequestBody RequestCar car) {
 		Return<ModelCar> carModel = carService.addCar(car);
@@ -63,5 +56,12 @@ public class CarController extends BaseController {
 	public @ResponseBody ResponseEntity<ModelCar> fill(@RequestBody RequestFillCar car) {
 		Return<ModelCar> carModel = carService.fillCar(car);
 		return generateResponse(carModel);
+	}
+	
+	@RequestMapping(value="/last/fill", method = RequestMethod.GET)
+	public @ResponseBody ResponseEntity<ResponseCarLastFilling> getCarLastFill(@RequestParam(name="plateNumber") String plateNumber,
+			@RequestParam(name="plateCode") String plateCode) {
+		Return<ResponseCarLastFilling> result = carService.getCarLastFill(plateNumber,plateCode);
+		return generateResponse(result);
 	}
 }

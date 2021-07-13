@@ -20,6 +20,7 @@ import com.base.lib.db.model.ModelConfig;
 import com.base.service.admin.requests.RequestCar;
 import com.base.service.admin.requests.RequestFillCar;
 import com.base.service.response.ResponseCarLastFilling;
+import com.base.utils.DateUtils;
 
 public class CarService {
 	@Autowired
@@ -49,6 +50,13 @@ public class CarService {
 		ResponseCarLastFilling response=new ResponseCarLastFilling();
 		response.setAllowedAfterDayCount(car.getAllowedAfterDayCount());
 		response.setLast(car.getLastFilled());
+		Calendar c=Calendar.getInstance();
+		if(car.getLastFilled()!=null && car.getAllowedAfterDayCount()!=null) {
+			c.setTime(car.getLastFilled().getDate());
+			c.add(Calendar.DAY_OF_MONTH, car.getAllowedAfterDayCount().intValue());
+		}
+		response.setNextFillDate(DateUtils.clearDate(c.getTime()));
+		response.setCanFill(response.getNextFillDate().compareTo(DateUtils.clearDate(new Date()))<=0);
 		return new Success<ResponseCarLastFilling>(response);
 	}
 	
