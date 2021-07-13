@@ -31,7 +31,6 @@ public class DeviceInterceptor extends HandlerInterceptorAdapter {
 		Enumeration<String> hearderNames = request.getHeaderNames();
 		while (hearderNames.hasMoreElements()) {
 			String headerName = hearderNames.nextElement();
-			System.out.println(headerName + " value : "+request.getHeader(headerName));
 			returnValue.put(headerName, request.getHeader(headerName));
 		}
 		return returnValue;

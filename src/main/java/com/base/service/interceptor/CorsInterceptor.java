@@ -40,13 +40,12 @@ public class CorsInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		System.out.println(request.getRequestURL());
 		this.corsData = new CorsData(request);
+		response.setHeader(AC_ALLOW_ORIGIN, corsData.getOrigin());
 
 		if (this.corsData.isPreflighted()) {
-			System.out.println(origin);
-			response.setHeader(AC_ALLOW_ORIGIN, corsData.getOrigin());
+//			response.setHeader(AC_ALLOW_ORIGIN, corsData.getOrigin());
 			response.setHeader(AC_ALLOW_METHODS, corsData.requestMethods);
 			response.setHeader(AC_ALLOW_HEADERS,corsData.requestHeaders);
-
 			return false;
 		}
 
@@ -72,7 +71,7 @@ public class CorsInterceptor extends HandlerInterceptorAdapter {
 			Enumeration<String> hearderNames = request.getHeaderNames();
 			while (hearderNames.hasMoreElements()) {
 				String headerName = hearderNames.nextElement();
-				System.out.println(headerName + " value : "+request.getHeader(headerName));
+//				System.out.println(headerName + " value : "+request.getHeader(headerName));
 				returnValue.put(headerName, request.getHeader(headerName));
 			}
 			return returnValue;
@@ -99,7 +98,7 @@ public class CorsInterceptor extends HandlerInterceptorAdapter {
 		}
 
 		public String getOrigin() {
-			return origin;
+			return "*";
 		}
 
 		public String getRequestMethods() {
