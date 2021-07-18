@@ -48,6 +48,7 @@ public class CarService {
 			return new Failure<>("car.not.found");
 		}
 		ResponseCarLastFilling response=new ResponseCarLastFilling();
+		response.setCarOwnerName(car.getCarOwnerName());
 		response.setAllowedAfterDayCount(car.getAllowedAfterDayCount());
 		response.setLast(car.getLastFilled());
 		Calendar c=Calendar.getInstance();

@@ -8,6 +8,8 @@ public class ResponseCarLastFilling {
 
 	private ModelCarFillingHistory last;
 	
+	private String carOwnerName;
+	
 	private Long allowedAfterDayCount;
 	
 	private boolean canFill;
@@ -19,6 +21,13 @@ public class ResponseCarLastFilling {
 	}
 	public void setLast(ModelCarFillingHistory last) {
 		this.last = last;
+	}
+	
+	public String getCarOwnerName() {
+		return carOwnerName;
+	}
+	public void setCarOwnerName(String carOwnerName) {
+		this.carOwnerName = carOwnerName;
 	}
 	public Long getAllowedAfterDayCount() {
 		return allowedAfterDayCount;
