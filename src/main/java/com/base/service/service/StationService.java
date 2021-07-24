@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import com.base.base.Constants;
 import com.base.base.Failure;
@@ -71,16 +72,10 @@ public class StationService {
 		if (request == null) {
 			return new Failure<>("Invalid Station");
 		}
-		if (request.getName() == null) {
-			return new Failure<>("Invalid Name");
-		}
 		ModelStation station = stationDao.getValueById(ModelStation.class,
 				request.getId() == null ? -1 : request.getId());
 		if (station == null) {
 			return new Failure<>("Station Not Exists");
-		}
-		if (request.getPhone() == null) {
-			return new Failure<>("Invalid Phone Number");
 		}
 		if (request.getLocation() != null) {
 			Return<ModelLocation> location = locationService.put(request.getLocation());
@@ -89,9 +84,13 @@ public class StationService {
 			}
 			station.setLocation(location.getData());
 		}
-		station.setName(request.getName());
-		station.setPhone(request.getPhone());
-		station.setClosed(request.getClosed()==null?true:request.getClosed());
+		if (request.getName() != null && !StringUtils.isEmpty(request.getName())) {
+			station.setName(request.getName());
+		}
+		if (request.getPhone() == null && !StringUtils.isEmpty(request.getPhone())) {
+			station.setPhone(request.getPhone());
+		}
+		station.setClosed(request.getClosed()==null?station.isClosed():request.getClosed());
 		stationDao.update(station);
 		return new Success<ModelStation>(station);
 	}
