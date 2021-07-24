@@ -32,6 +32,12 @@ public class StationService {
 	}
 
 	@Transactional
+	public Return<ModelStation> get(long id) {
+		return new Success<>(stationDao.getValueById(ModelStation.class, id));
+	}
+
+	
+	@Transactional
 	public Return<ModelStation> put(RequestStation request) {
 		if (request.getName() == null) {
 			return new Failure<>("Invalid Name");

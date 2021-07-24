@@ -339,12 +339,12 @@
 					},
 					{
 						"key": "auth_session_id",
-						"value": "1",
+						"value": "18",
 						"type": "text"
 					},
 					{
 						"key": "auth_session_token",
-						"value": "e883521013404e1693e9d2ee2827b90f",
+						"value": "22caa4d39af74dc9b2d8c5b341cb9e55",
 						"type": "text"
 					}
 				],
@@ -416,7 +416,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\":\"Mohamad\",\n    \"phone\":\"03150768\",\n    \"username\":\"test2\",\n    \"password\":\"1234\",\n    \"type\":1,\n    \"station\":{\n        \"id\":1,\n        \"name\":\"\",\n        \"phone\":\"\",\n        \"location\":{\n            \"description\":\"\",\n            \"longitude\":4,\n            \"latitude\":1\n        }\n    }\n}",
+					"raw": "{\n\t\"name\":\"Mohamad\",\n    \"phone\":\"03150768\",\n    \"username\":\"test2\",\n    \"password\":\"1234\",\n    \"type\":1,\n    \"station\":{\n        \"id\":2,\n        \"name\":\"\",\n        \"phone\":\"\",\n        \"location\":{\n            \"description\":\"\",\n            \"longitude\":4,\n            \"latitude\":1\n        }\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -506,6 +506,73 @@
 							"key": "searchPhrase",
 							"value": "Ansar"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get station",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "device_uid",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_system",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_name",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_app_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_brand",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_model",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_os_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "auth_session_id",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "auth_session_token",
+						"value": "e883521013404e1693e9d2ee2827b90f",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8082/lib-service/station/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"lib-service",
+						"station",
+						"1"
 					]
 				}
 			},

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,6 +30,12 @@ public class StationController extends BaseController {
 			@RequestParam(name = "searchPhrase", required = false) String searchPhrase,
 			@RequestParam(name = "all", required = false,defaultValue = "false") Boolean all) {
 		Return<List<ModelStation>> result = stationService.get(searchPhrase,(all==null||!all)?Constants.ACTIVE:null);
+		return generateResponse(result);
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public @ResponseBody ResponseEntity<List<ModelStation>> getById(@PathVariable("id") long id) {
+		Return<ModelStation> result = stationService.get(id);
 		return generateResponse(result);
 	}
 
