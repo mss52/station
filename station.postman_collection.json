@@ -48,7 +48,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"username\":\"test2\",\n\t\"password\":\"12345\"\n}",
+					"raw": "{\n\t\"username\":\"test2\",\n\t\"password\":\"1234\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -113,12 +113,12 @@
 					},
 					{
 						"key": "auth_session_id",
-						"value": "1",
+						"value": "18",
 						"type": "text"
 					},
 					{
 						"key": "auth_session_token",
-						"value": "e883521013404e1693e9d2ee2827b90f",
+						"value": "22caa4d39af74dc9b2d8c5b341cb9e55",
 						"type": "text"
 					}
 				],
@@ -189,12 +189,12 @@
 					},
 					{
 						"key": "auth_session_id",
-						"value": "1",
+						"value": "18",
 						"type": "text"
 					},
 					{
 						"key": "auth_session_token",
-						"value": "e883521013404e1693e9d2ee2827b90f",
+						"value": "22caa4d39af74dc9b2d8c5b341cb9e55",
 						"type": "text"
 					}
 				],
@@ -339,18 +339,18 @@
 					},
 					{
 						"key": "auth_session_id",
-						"value": "18",
+						"value": "1",
 						"type": "text"
 					},
 					{
 						"key": "auth_session_token",
-						"value": "22caa4d39af74dc9b2d8c5b341cb9e55",
+						"value": "63a3466040fe4ace98bb465939b6008f",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"car\":{\n        \"id\":1,\n        \"carOwnerName\":\"mohamad1\",\n\t    \"plateNumber\":\"123456\",\n        \"plateCode\":\"A\",\n        \"note\":\"taxi\"\n    },\n\t\"amount\":1,\n    \"note\":\"test\"\n}",
+					"raw": "{\n    \"car\":{\n        \"carOwnerName\":\"mohamad1\",\n\t    \"plateNumber\":\"123456\",\n        \"plateCode\":\"A\",\n        \"note\":\"taxi\"\n    },\n\t\"amount\":1,\n    \"note\":\"test\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -491,7 +491,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8082/lib-service/station?searchPhrase=Ansar",
+					"raw": "http://localhost:8082/lib-service/station?searchPhrase=Ansar&all=true",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -505,6 +505,10 @@
 						{
 							"key": "searchPhrase",
 							"value": "Ansar"
+						},
+						{
+							"key": "all",
+							"value": "true"
 						}
 					]
 				}
@@ -706,7 +710,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\":1,\n  \"location\": {\n    \"description\": \"ansar\",\n    \"latitude\": 14.111,\n    \"longitude\": 15.111\n  },\n  \"name\": \"ansar\",\n  \"phone\": \"031507268\"\n}",
+					"raw": "{\n    \"id\":1,\n  \"location\": {\n    \"description\": \"ansar\",\n    \"latitude\": 14.111,\n    \"longitude\": 15.111\n  },\n  \"name\": \"ansar\",\n  \"phone\": \"031507268\",\n  \"closed\":false\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -870,6 +874,160 @@
 						{
 							"key": "plateCode",
 							"value": "A"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get User insights",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "device_uid",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_system",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_name",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_app_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_brand",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_model",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_os_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "auth_session_token",
+						"value": "32e5be3acd9f4986871b2912b98c5876",
+						"type": "text"
+					},
+					{
+						"key": "auth_session_id",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8082/lib-service/user/insights?fromDate=01-07-2021&toDate=03-07-2021",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"lib-service",
+						"user",
+						"insights"
+					],
+					"query": [
+						{
+							"key": "fromDate",
+							"value": "01-07-2021"
+						},
+						{
+							"key": "toDate",
+							"value": "03-07-2021"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get station insights",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "device_uid",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_system",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_operating_name",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_app_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_brand",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_model",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "device_os_version",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "auth_session_token",
+						"value": "32e5be3acd9f4986871b2912b98c5876",
+						"type": "text"
+					},
+					{
+						"key": "auth_session_id",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8082/lib-service/station/insights?fromDate=01-07-2021&toDate=03-07-2021",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"lib-service",
+						"station",
+						"insights"
+					],
+					"query": [
+						{
+							"key": "fromDate",
+							"value": "01-07-2021"
+						},
+						{
+							"key": "toDate",
+							"value": "03-07-2021"
 						}
 					]
 				}

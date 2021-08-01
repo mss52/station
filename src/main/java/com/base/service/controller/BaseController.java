@@ -21,7 +21,7 @@ public class BaseController {
 	public static final String DEFAULT_LANGUAGE="en";
 
 	@Autowired
-	private SessionBean session;
+	protected SessionBean session;
 	
 	@Autowired
 	private LocalizationDao localizationDao;

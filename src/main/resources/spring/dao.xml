@@ -15,5 +15,6 @@
 	<bean id="stationDao" class="com.base.lib.db.dao.StationDao"></bean>
 	<bean id="configDao" class="com.base.lib.db.dao.ConfigDao"></bean>
 	<bean id="localizationDao" class="com.base.lib.db.dao.LocalizationDao"></bean>
+	<bean id="userDao" class="com.base.lib.db.dao.UserDao"></bean>
 
 </beans>

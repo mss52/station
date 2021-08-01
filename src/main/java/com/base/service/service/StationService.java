@@ -11,11 +11,14 @@ import com.base.base.Constants;
 import com.base.base.Failure;
 import com.base.base.Return;
 import com.base.base.Success;
+import com.base.bean.InsightsBean;
 import com.base.lib.db.dao.StationDao;
 import com.base.lib.db.model.ModelStatus;
 import com.base.lib.db.model.auth.ModelLocation;
 import com.base.lib.db.model.auth.ModelStation;
 import com.base.service.admin.requests.RequestStation;
+import com.base.service.response.ResponseInsights;
+import com.base.utils.DateUtils;
 
 public class StationService {
 	@Autowired
@@ -93,5 +96,13 @@ public class StationService {
 		station.setClosed(request.getClosed()==null?station.isClosed():request.getClosed());
 		stationDao.update(station);
 		return new Success<ModelStation>(station);
+	}
+	@Transactional
+	public Return<ResponseInsights> insights(long stationId,Date fromDate,Date toDate) {
+		List<InsightsBean> result = stationDao.getInsights(stationId,DateUtils.clearDate(fromDate),
+				DateUtils.midnigth(toDate));
+		ResponseInsights response=new ResponseInsights();
+		response.setList(result);;
+		return new Success<ResponseInsights>(response);
 	}
 }

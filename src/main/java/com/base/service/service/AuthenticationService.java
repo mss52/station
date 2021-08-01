@@ -3,6 +3,7 @@ package com.base.service.service;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.locks.ReentrantLock;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -122,6 +123,8 @@ public class AuthenticationService {
 		return new Success<>(new ResponseLogin(ResponseSession.fromModel(session)));
 	}
 
+    private ReentrantLock mutex = new ReentrantLock();
+
 	@Transactional
 	public Return<ModelDevice> createDevice(String deviceId, String deviceUid, String deviceModel, String deviceBrand, String deviceOsVersion,
 			String deviceOperatingSystem, String deviceOperatingName,String appVersion,String language) {
@@ -131,18 +134,29 @@ public class AuthenticationService {
 		}
 		ModelDevice device=authDao.getDevice(id,deviceUid);
 		if(device==null) {
-			device=new ModelDevice();
-			device.setActive(true);
-			device.setAppVersion(appVersion);
-			device.setBrand(deviceBrand);
-			device.setDateCreation(new Date());
-			device.setModel(deviceModel);
-			device.setOperatingName(deviceOperatingName);
-			device.setOperatingSystem(NumberUtils.pasrseInteger(deviceOperatingSystem));
-			device.setOsVersion(deviceOsVersion);
-			device.setUid(deviceUid);
-			device.setLanguage(language);
-			authDao.save(device);
+			try{
+				boolean recheckDevice=mutex.isLocked();
+				mutex.lock();
+				if(recheckDevice) {
+					device=authDao.getDevice(id,deviceUid);
+				}
+				if(device==null) {
+					device=new ModelDevice();
+					device.setActive(true);
+					device.setAppVersion(appVersion);
+					device.setBrand(deviceBrand);
+					device.setDateCreation(new Date());
+					device.setModel(deviceModel);
+					device.setOperatingName(deviceOperatingName);
+					device.setOperatingSystem(NumberUtils.pasrseInteger(deviceOperatingSystem));
+					device.setOsVersion(deviceOsVersion);
+					device.setUid(deviceUid);
+					device.setLanguage(language);
+					authDao.save(device);	
+				}
+	        }catch (Exception e) {
+	        	mutex.unlock();	
+	        }
 		}else {
 			device.setAppVersion(appVersion);
 			device.setLanguage(language);

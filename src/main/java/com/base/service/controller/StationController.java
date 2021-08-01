@@ -1,8 +1,10 @@
 package com.base.service.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +18,7 @@ import com.base.base.Constants;
 import com.base.base.Return;
 import com.base.lib.db.model.auth.ModelStation;
 import com.base.service.admin.requests.RequestStation;
+import com.base.service.response.ResponseInsights;
 import com.base.service.service.StationService;
 
 @RestController
@@ -48,6 +51,17 @@ public class StationController extends BaseController {
 	@RequestMapping(value = "", method = RequestMethod.PATCH)
 	public @ResponseBody ResponseEntity<ModelStation> update(@RequestBody RequestStation requestBody) {
 		Return<ModelStation> result = stationService.update(requestBody);
+		return generateResponse(result);
+	}
+	
+	@RequestMapping(value = "/insights", method = RequestMethod.GET)
+	public @ResponseBody ResponseEntity<ResponseInsights> insights(@RequestParam(name = "fromDate",required = false) 
+	  @DateTimeFormat(pattern = "dd-MM-yyyy") Date fromDate,@RequestParam(name="toDate",required = false) 
+	  @DateTimeFormat(pattern = "dd-MM-yyyy") Date toDate) {
+		System.out.println("fromDate "+fromDate );
+		System.out.println("toDate "+toDate );
+		Return<ResponseInsights> result = stationService.insights(session.getUser().getStation().getId(), 
+				fromDate,toDate);
 		return generateResponse(result);
 	}
 }

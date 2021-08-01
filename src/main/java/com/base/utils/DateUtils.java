@@ -6,6 +6,9 @@ import java.util.Date;
 public class DateUtils {
 	
 	public static Date clearDate(Date d) {
+		if(d==null) {
+			return null;
+		}
 		Calendar c=Calendar.getInstance();
 		c.setTime(d);
 		c.set(Calendar.HOUR, 0);
@@ -16,6 +19,9 @@ public class DateUtils {
 	}
 
 	public static Date midnigth(Date d) {
+		if(d==null) {
+			return null;
+		}
 		Calendar c=Calendar.getInstance();
 		c.setTime(d);
 		c.set(Calendar.HOUR, 23);

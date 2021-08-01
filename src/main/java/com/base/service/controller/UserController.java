@@ -1,6 +1,9 @@
 package com.base.service.controller;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -15,6 +18,7 @@ import com.base.lib.db.model.auth.ModelUser;
 import com.base.service.admin.requests.RequestLogin;
 import com.base.service.admin.requests.RequestSignUp;
 import com.base.service.admin.requests.RequestUpdateUser;
+import com.base.service.response.ResponseInsights;
 import com.base.service.response.ResponseLogin;
 import com.base.service.service.AuthenticationService;
 import com.base.service.service.UserService;
@@ -56,10 +60,22 @@ public class UserController extends BaseController {
 		return generateResponse(result);
 	}
 	@RequestMapping(value = "/check/username", method = RequestMethod.GET)
-	public @ResponseBody ResponseEntity<ModelUser> checkUserName(@RequestParam String userName) {
-		Return result = userService.checkUserName(userName);
+	public @ResponseBody ResponseEntity<?> checkUserName(@RequestParam String userName) {
+		Return<?> result = userService.checkUserName(userName);
 		return generateResponse(result);
 	}
+	
+	@RequestMapping(value = "/insights", method = RequestMethod.GET)
+	public @ResponseBody ResponseEntity<ResponseInsights> insights(@RequestParam(name = "fromDate",required = false) 
+	  @DateTimeFormat(pattern = "dd-MM-yyyy") Date fromDate,@RequestParam(name="toDate",required = false) 
+	  @DateTimeFormat(pattern = "dd-MM-yyyy") Date toDate) {
+		System.out.println("fromDate "+fromDate );
+		System.out.println("toDate "+toDate );
+		Return<ResponseInsights> result = userService.insights(session.getUser().getId(), 
+				fromDate, toDate);
+		return generateResponse(result);
+	}
+	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<?> test() {
 		return generateResponse(null);

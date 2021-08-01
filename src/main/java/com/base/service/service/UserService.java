@@ -1,5 +1,8 @@
 package com.base.service.service;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -7,19 +10,26 @@ import com.base.base.Constants;
 import com.base.base.Failure;
 import com.base.base.Return;
 import com.base.base.Success;
+import com.base.bean.InsightsBean;
 import com.base.bean.SessionBean;
 import com.base.lib.db.dao.AuthDao;
+import com.base.lib.db.dao.UserDao;
 import com.base.lib.db.model.ModelStatus;
 import com.base.lib.db.model.auth.ModelStation;
 import com.base.lib.db.model.auth.ModelUser;
 import com.base.service.admin.requests.RequestSignUp;
 import com.base.service.admin.requests.RequestUpdateUser;
+import com.base.service.response.ResponseInsights;
+import com.base.utils.DateUtils;
 import com.base.utils.SaltedMD5;
 
 public class UserService {
 	@Autowired
 	private AuthDao authDao;
 
+	@Autowired
+	private UserDao userDao;
+	
 	@Autowired
 	private SessionBean session;
 
@@ -98,5 +108,14 @@ public class UserService {
 			return new Failure<>("username.already.exists");
 		}
 		return new Success();
+	}
+	
+	@Transactional
+	public Return<ResponseInsights> insights(long userId,Date fromDate,Date toDate) {
+		List<InsightsBean> result = userDao.getInsights(userId,DateUtils.clearDate(fromDate),
+				DateUtils.midnigth(toDate));
+		ResponseInsights response=new ResponseInsights();
+		response.setList(result);;
+		return new Success<ResponseInsights>(response);
 	}
 }

@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `station_schema` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `station_schema`;
 -- MySQL dump 10.13  Distrib 8.0.25, for macos11 (x86_64)
 --
 -- Host: 127.0.0.1    Database: station_schema
 -- ------------------------------------------------------
--- Server version	5.7.34
+-- Server version	5.7.32
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -160,7 +158,6 @@ CREATE TABLE `device` (
 
 LOCK TABLES `device` WRITE;
 /*!40000 ALTER TABLE `device` DISABLE KEYS */;
-INSERT INTO `device` VALUES (1,_binary '','1','1','2021-07-08 21:21:41',NULL,NULL,'1','1',1,'1','1',NULL);
 /*!40000 ALTER TABLE `device` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +174,7 @@ CREATE TABLE `localization` (
   `language` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   `value` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,7 +183,7 @@ CREATE TABLE `localization` (
 
 LOCK TABLES `localization` WRITE;
 /*!40000 ALTER TABLE `localization` DISABLE KEYS */;
-INSERT INTO `localization` VALUES (1,'car.not.found','en','Car Not Found'),(2,'car.not.found','ar','Ma fe seayara');
+INSERT INTO `localization` VALUES (1,'invalid.plate.number','en','Invalid Plate Number.'),(2,'invalid.plate.code','en','Invalid Plate Code.'),(3,'car.already.exsts','en','Car Already Exists.'),(4,'invalid.filling.amount','en','Invalid Filling Amount.'),(5,'invalid.car','en','Invalid Car.'),(6,'invalid.car.id','en','Invalid Car.'),(7,'filling.not.allowed','en','Car Not Allowed For Filling.'),(8,'car.not.found','en','Car Not found.'),(9,'session.not_valid','en','Session Expired. Please Login Again.'),(10,'session.expired','en','Session Expired. Please Login Again.'),(11,'device.not_active','en','Session Expired. Please Login Again.'),(12,'device.identifier_empty','en','Session Expired. Please Login Again.'),(13,'auth.password.empty','en','Invalid Username Or Password.'),(14,'auth.username_not_found','en','Invalid Username Or Password.'),(15,'auth.wrong_password','en','Invalid Username Or Password.'),(16,'auth.not_valid_login','en','Invalid Username Or Password.'),(17,'auth.user_not_active','en','User Is Inactive.'),(18,'500','en','Something Has Occurred Please contact Support.'),(19,'invalid.location','en','Invalid Location.'),(20,'invalid.location.description','en','Invalid Location Description.'),(21,'invalid.station.name','en','Invalid Station Name.'),(22,'station.already.exists','en','Station Already Exists.'),(23,'invalid.phone.number','en','Invalid Phone Number.'),(24,'invalid.station','en','Invalid Station.'),(25,'station.not.exists','en','Station Not Found.'),(26,'invalid.user.name','en','Invalid Name.'),(27,'invalid.username','en','Invalid Username.'),(28,'invalid.password','en','Invalid Password.'),(29,'username.already.exists','en','Username Already exists.'),(30,'invalid.plate.number','en','رقم اللوحة غير صحيح.'),(31,'invalid.plate.code','en','رمز اللوحة غير صالح.'),(32,'car.already.exsts','en','السيارة موجودة.'),(33,'invalid.filling.amount','en','كمية التعبئة غير صالح.'),(34,'invalid.car','en','سيارة غير صالحة.'),(35,'invalid.car.id','en','سيارة غير صالحة.'),(36,'filling.not.allowed','en','غير مسموح بتعبئة السيارة.'),(37,'car.not.found','en','لم يتم العثور على السيارة.'),(38,'session.not_valid','en','الرجاد الدخول على الحساب من جديد.'),(39,'session.expired','en','الرجاد الدخول على الحساب من جديد.'),(40,'device.not_active','en','الرجاد الدخول على الحساب من جديد.'),(41,'device.identifier_empty','en','الرجاد الدخول على الحساب من جديد.'),(42,'auth.password.empty','en','خطأ في اسم المستخدم أو كلمة مرور.'),(43,'auth.username_not_found','en','خطأ في اسم المستخدم أو كلمة مرور.'),(44,'auth.wrong_password','en','خطأ في اسم المستخدم أو كلمة مرور.'),(45,'auth.not_valid_login','en','خطأ في اسم المستخدم أو كلمة مرور.'),(46,'auth.user_not_active','en','المستخدم غير نشط.'),(47,'500','en','حدث شيء الرجاء الاتصال بالدعم.'),(48,'invalid.location','en','موقع غير صحيح.'),(49,'invalid.location.description','en','وصف الموقع غير صحيح.'),(50,'invalid.station.name','en','اسم المحطة غير صحيح.'),(51,'station.already.exists','en','المحطة موجودة.'),(52,'invalid.phone.number','en','رقم الهاتف غير صحيح.'),(53,'invalid.station','en','محطة غير صحيح.'),(54,'station.not.exists','en','المحطة غير موجودة.'),(55,'invalid.user.name','en','اسم غير صالح.'),(56,'invalid.username','en','اسم مستخدم غير صحيح.'),(57,'invalid.password','en','رمز مرور خاطئ.'),(58,'username.already.exists','en','اسم المستخدم موجود بالفعل.');
 /*!40000 ALTER TABLE `localization` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -213,7 +210,6 @@ CREATE TABLE `location` (
 
 LOCK TABLES `location` WRITE;
 /*!40000 ALTER TABLE `location` DISABLE KEYS */;
-INSERT INTO `location` VALUES (1,'2021-07-08 21:21:54','ansar',14.111,15.111);
 /*!40000 ALTER TABLE `location` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -375,4 +371,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-09  0:35:02
+-- Dump completed on 2021-08-01 19:30:00
