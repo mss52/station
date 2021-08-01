@@ -3,10 +3,13 @@ package com.base.service.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.base.base.Dialog;
+import com.base.base.Failure;
 import com.base.base.ResponseBase;
 import com.base.base.Return;
+import com.base.base.SessionException;
 import com.base.bean.SessionBean;
 import com.base.lib.db.dao.LocalizationDao;
 import com.base.lib.db.model.ModelLocalization;
@@ -71,4 +74,15 @@ public class BaseController {
 		return code;
 	}
 	
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<?> handleException(NullPointerException ex)
+	{
+		return generateResponse(new Failure<>("500"));
+	} 
+	
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<?> handleException(SessionException ex)
+	{
+		return generateResponse(new Failure<>("session.not_valid"));
+	} 
 }

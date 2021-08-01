@@ -22,10 +22,10 @@ public class LocationService {
 	@Transactional
 	public Return<ModelLocation> put(RequestLocation request) {
 		if(request==null) {
-			return new Failure<>("Invalid Location");
+			return new Failure<>("invalid.location");
 		}
 		if (request.getDescription() == null) {
-			return new Failure<>("Invalid Location Description");
+			return new Failure<>("invalid.location.description");
 		}
 		
 		ModelLocation u = new ModelLocation();

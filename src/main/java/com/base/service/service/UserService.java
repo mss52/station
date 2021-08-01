@@ -26,27 +26,27 @@ public class UserService {
 	@Transactional
 	public Return<ModelUser> signUp(RequestSignUp request) {
 		if (request.getName() == null) {
-			return new Failure<>("Invalid Name");
+			return new Failure<>("invalid.user.name");
 		}
 		if (request.getPhone() == null) {
-			return new Failure<>("Invalid Phone Number");
+			return new Failure<>("invalid.phone.number");
 		}
 		if (request.getUsername() == null) {
-			return new Failure<>("Invalid Username");
+			return new Failure<>("invalid.username");
 		}
 		if (request.getPassword() == null) {
-			return new Failure<>("Invalid Password");
+			return new Failure<>("invalid.password");
 		}
 		if (request.getStation() == null || request.getStation().getId() == null) {
-			return new Failure<>("Invalid Station");
+			return new Failure<>("invalid.station");
 		}
-		ModelUser user = authDao.getUserByUserName(request.getUsername());
+		ModelUser user = authDao.getUserByUserName(request.getUsername().toLowerCase());
 		if (user != null) {
-			return new Failure<>("Username Alredy exists");
+			return new Failure<>("username.already.exists");
 		}
 		ModelStation s = authDao.getValueById(ModelStation.class, request.getStation().getId());
 		if (s == null) {
-			return new Failure<>("Station Not Found");
+			return new Failure<>("invalid.station");
 		}
 		ModelUser u = new ModelUser();
 		u.setName(request.getName());
@@ -54,7 +54,7 @@ public class UserService {
 		u.setStation(s);
 		u.setStatus(new ModelStatus(Constants.PENDING_APPROVAL));
 		u.setUserType(request.getType());
-		u.setUsername(request.getUsername());
+		u.setUsername(request.getUsername().toLowerCase());
 		u.setPhone(request.getPhone());
 		authDao.save(u);
 		return new Success<ModelUser>(u);
@@ -63,22 +63,22 @@ public class UserService {
 	@Transactional
 	public Return<ModelUser> update(RequestUpdateUser request) {
 		if (request.getName() == null) {
-			return new Failure<>("Invalid Name");
+			return new Failure<>("invalid.user.name");
 		}
 		if (request.getPhone() == null) {
-			return new Failure<>("Invalid Phone Number");
+			return new Failure<>("invalid.phone.number");
 		}
 		if (request.getPassword() == null) {
-			return new Failure<>("Invalid Password");
+			return new Failure<>("invalid.password");
 		}
 		if (request.getStation() == null || request.getStation().getId() == null) {
-			return new Failure<>("Invalid Station");
+			return new Failure<>("invalid.station");
 		}
 		ModelUser user = session.getUser();
 		
 		ModelStation s = authDao.getValueById(ModelStation.class, request.getStation().getId());
 		if (s == null) {
-			return new Failure<>("Station Not Found");
+			return new Failure<>("invalid.station");
 		}
 		user.setName(request.getName());
 		user.setPhone(request.getPhone());
@@ -88,4 +88,15 @@ public class UserService {
 		return new Success<ModelUser>(user);
 	}
 	
+	@Transactional
+	public Return checkUserName(String username) {
+		ModelUser user=null;
+		if(username!=null) {
+			user = authDao.getUserByUserName(username.toLowerCase());
+		}
+		if (user != null) {
+			return new Failure<>("username.already.exists");
+		}
+		return new Success();
+	}
 }

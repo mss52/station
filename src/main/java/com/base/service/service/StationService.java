@@ -41,14 +41,14 @@ public class StationService {
 	@Transactional
 	public Return<ModelStation> put(RequestStation request) {
 		if (request.getName() == null) {
-			return new Failure<>("Invalid Name");
+			return new Failure<>("invalid.station.name");
 		}
 		ModelStation station = stationDao.getStationByName(request.getName());
 		if (station != null) {
-			return new Failure<>("Station Already Exists");
+			return new Failure<>("station.already.exists");
 		}
 		if (request.getPhone() == null) {
-			return new Failure<>("Invalid Phone Number");
+			return new Failure<>("invalid.phone.number");
 		}
 
 		Return<ModelLocation> location = locationService.put(request.getLocation());
@@ -70,12 +70,12 @@ public class StationService {
 	@Transactional
 	public Return<ModelStation> update(RequestStation request) {
 		if (request == null) {
-			return new Failure<>("Invalid Station");
+			return new Failure<>("invalid.station");
 		}
 		ModelStation station = stationDao.getValueById(ModelStation.class,
 				request.getId() == null ? -1 : request.getId());
 		if (station == null) {
-			return new Failure<>("Station Not Exists");
+			return new Failure<>("station.not.exists");
 		}
 		if (request.getLocation() != null) {
 			Return<ModelLocation> location = locationService.put(request.getLocation());

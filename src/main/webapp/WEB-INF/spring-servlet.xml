@@ -47,6 +47,7 @@
 			<mvc:exclude-mapping path="/webjars/**" />
 			<mvc:exclude-mapping path="/swagger-resources/**" />
 			<mvc:exclude-mapping path="/swagger-ui.html" />
+			<mvc:exclude-mapping path="/user/check/username" />
 
 			<bean class="com.base.service.interceptor.DeviceInterceptor"></bean>
 		</mvc:interceptor>
@@ -63,6 +64,7 @@
 			<mvc:exclude-mapping path="/station/**" />
 			<mvc:exclude-mapping path="/car/code" />
 			<mvc:exclude-mapping path="/car//last/fill" />
+			<mvc:exclude-mapping path="/user/check/username" />
 			
 			<bean
 				class="com.base.service.interceptor.AuthenticationInterceptor"></bean>

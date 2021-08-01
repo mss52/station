@@ -42,7 +42,7 @@ public class AuthDao extends BaseDao {
 			return null;
 		}
 		
-		return (ModelDevice) criteria.getExecutableCriteria(getSession()).uniqueResult();
+		return (ModelDevice) criteria.getExecutableCriteria(getSession()).setMaxResults(1).uniqueResult();
 	}
 	public ModelSession getSession(Long id, String token) {
 		DetachedCriteria criteria = DetachedCriteria.forClass(ModelSession.class);

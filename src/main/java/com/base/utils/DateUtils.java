@@ -15,5 +15,14 @@ public class DateUtils {
 		return c.getTime();
 	}
 
+	public static Date midnigth(Date d) {
+		Calendar c=Calendar.getInstance();
+		c.setTime(d);
+		c.set(Calendar.HOUR, 23);
+		c.set(Calendar.MINUTE, 59);
+		c.set(Calendar.SECOND, 59);
+		c.set(Calendar.MILLISECOND, 999);
+		return c.getTime();
+	}
 
 }
